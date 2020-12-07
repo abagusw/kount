@@ -10,7 +10,7 @@ class EmployeesController extends Controller
 {
     public function login()
     {
-        return view('login');
+        return view('frontend/login');
     }
 
     public function doLogin(Request $request)
