@@ -17,19 +17,25 @@
         <div class="col">
             <div class="card">
                 <div class="title">Member Login</div>
-                <form action="{{ route('dash.home') }}">
+                @if(session('message'))
+                <div class="alert alert-{{session('message')['status']}}">
+                    {{ session('message')['desc'] }}
+                </div>
+                @endif
+                <form action="{{ route('dologin') }}" method="post">
+                    {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="login-email"><i class="fas fa-envelope"></i></label>
-                        <input type="email" name="login-email" id="login-email" placeholder="Email">
+                        <label for="username"><i class="fas fa-user"></i></label>
+                        <input type="username" name="username" id="username" placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <label for="login-password"><i class="fas fa-lock"></i></label>
-                        <input type="password" name="login-password" id="login-password" placeholder="Password">
+                        <label for="password"><i class="fas fa-key"></i></label>
+                        <input type="password" name="password" id="password" placeholder="Password">
                     </div>
 
                     <button type="submit" class="btn-login"><em>Log In</em></button>
                 </form>
-                <div class="text-center">Forgot your <a href=""><strong>login details?</strong></a></div>
+                {{-- <div class="text-center">Forgot your <a href=""><strong>login details?</strong></a></div> --}}
             </div>
         </div>
     </div>

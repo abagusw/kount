@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\GoalsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::name('login')->get('/login', [EmployeesController::class, 'login']);
+Route::name('dologin')->post('/login/dologin', [EmployeesController::class, 'doLogin']);
 
-Route::get('/dashboard', function () {
-    return view('home');
-})->name('dash.home');
+Route::name('dash.home')->get('/', [GoalsController::class, 'index']);
 
 Route::get('/projects', function () {
     return view('projects.index');
