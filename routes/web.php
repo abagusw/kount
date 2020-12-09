@@ -1,8 +1,5 @@
 <?php
-//backend
-use App\Http\Controllers\AdminController;
 
-//frontend
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -17,12 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//backend
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminController::class, 'index'])->name('admin.home');
-});
 
-//front end
 Route::name('login')->get('/login', [LoginController::class, 'index']);
 Route::name('dologin')->post('/login/dologin', [LoginController::class, 'doLogin']);
 Route::name('dash.home')->get('/', [HomeController::class, 'index']);
