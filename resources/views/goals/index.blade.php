@@ -81,6 +81,14 @@
                 <div class="col-sm-6">
                     {{-- <h2 class="mb-4 text-dark">Goals</h2> --}}
                     <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#add-goal"><em>Add a Goal</em></a>
+
+                    @if (isset($status))
+                        @if ($status)
+                        <p class="text-success">{{ $message }}</p> 
+                        @else
+                        <p class="text-danger">{{ $message }}</p> 
+                        @endif
+                    @endif
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -106,13 +114,13 @@
                                     <div class="row mt-4">
                                         <div class="col-auto">
                                             <div class="image">
-                                                <img src="{{ asset('img/dummy-profile.svg') }}" alt="User Image" width="80px">
+                                                <img src="{{ asset('public/img/dummy-profile.svg') }}" alt="User Image" width="80px">
                                             </div>
                                         </div>
                                         <div class="col my-auto">
                                             <div>
-                                                <h5>JessEffendy</h5>
-                                                <i>Role</i>
+                                                <h5>{{ session('employee_fullname') }}</h5>
+                                                <i>{{ $position->position_name }}</i>
                                             </div>
                                         </div>
                                         <div class="col text-right">
@@ -121,74 +129,14 @@
                                     </div>
                                     <div class="row">
                                         <ul class="col">
+                                            
+                                            @foreach ($goals as $item)
+                                                
                                             <li class="row mt-4">
                                                 <div class="col align-self-center">
                                                     <div class="row align-items-center">
                                                         <div class="col-12 col-md-7 titleUpdate">
-                                                            100% on time payroll payment
-                                                        </div>
-                                                        <div class="col-12 col-md-4">
-                                                            <div class="progress">
-                                                                <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #59BECD; color: #FFC045;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="prog1">XX%</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col text-md-center">
-                                                            _/_
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto align-self-center">
-                                                    <button class="btn btn-warning btn-update">Update</button>
-                                                </div>
-                                            </li>
-
-                                            <li class="row mt-4">
-                                                <div class="col align-self-center">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-12 col-md-7 titleUpdate">
-                                                            100% accuracy on total compensation calculation
-                                                        </div>
-                                                        <div class="col-12 col-md-4">
-                                                            <div class="progress">
-                                                                <div class="progress-bar" role="progressbar" style="width: 40%; background-color: #59BECD; color: #FFC045;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" id="prog2">XX%</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col text-md-center">
-                                                            _/_
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto align-self-center">
-                                                    <button class="btn btn-warning btn-update">Update</button>
-                                                </div>
-                                            </li>
-
-                                            <li class="row mt-4">
-                                                <div class="col align-self-center">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-12 col-md-7 titleUpdate">
-                                                            Review & renew company regulation
-                                                        </div>
-                                                        <div class="col-12 col-md-4">
-                                                            <div class="progress">
-                                                                <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #59BECD; color: #FFC045;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" id="prog3">50%</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col text-md-center">
-                                                            2/4
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto align-self-center">
-                                                    <button class="btn btn-warning btn-update">Update</button>
-                                                </div>
-                                            </li>
-
-                                            <li class="row mt-4">
-                                                <div class="col align-self-center">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-12 col-md-7 titleUpdate">
-                                                            Zero finding in GA related stock opname each year
+                                                            {{ $item->goal->goal_name }}
                                                         </div>
                                                         <div class="col-12 col-md-4">
                                                             <div class="progress">
@@ -201,9 +149,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-auto align-self-center">
+                                                    <input class="idEmployeeGoal" type="hidden" value="{{ $item->id }}"/>
                                                     <button class="btn btn-warning btn-update">Update</button>
                                                 </div>
                                             </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="row mt-5 justify-content-center">
@@ -245,11 +195,11 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/demo.js') }}"></script>
+<script src="{{ asset('public/js/demo.js') }}"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Sparkline -->
-<script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('public/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('public/js/main.js') }}"></script>
 <script>
     var Team_Panel = document.getElementById('Team_Panel');
     var Individual_Panel = document.getElementById('Individual_Panel');
@@ -322,88 +272,88 @@
             // row 1
             [{
                     'v': 'r1'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Kunthara Waluyo</b><div style="color:#6d6d6d; font-style:italic">HR & GA Division Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrga">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Kunthara Waluyo</b><div style="color:#6d6d6d; font-style:italic">HR & GA Division Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrga">80%</button></div>'
                 }
                 , '', 'HR & GA'
             ],
             // [{
             //         'v': 'r1'
-            //         , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b class="name-team">Kunthara Waluyo</b><div style="color:#6d6d6d; font-style:italic" class="role-team">HR & GA Division Head</div><button class="btn btn-light btpercent">80%</button></div>'
+            //         , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b class="name-team">Kunthara Waluyo</b><div style="color:#6d6d6d; font-style:italic" class="role-team">HR & GA Division Head</div><button class="btn btn-light btpercent">80%</button></div>'
             //     }
             //     , '', 'HR & GA'
             // ],
             //row 2
             [{
                     'v': 'r2c1'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b class="name-team">Rina Elma Suartini</b><div style="color:#6d6d6d; font-style:italic" class="role-team">HR Development Dept Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrdev">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b class="name-team">Rina Elma Suartini</b><div style="color:#6d6d6d; font-style:italic" class="role-team">HR Development Dept Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrdev">80%</button></div>'
                 }
                 , 'r1', 'HRD'
             ]
             , [{
                     'v': 'r2c2'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Jumaidi Anggriawan</b><div style="color:#6d6d6d; font-style:italic">HR Operations & IRGA Dept Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrirga">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Jumaidi Anggriawan</b><div style="color:#6d6d6d; font-style:italic">HR Operations & IRGA Dept Head</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrirga">80%</button></div>'
                 }
                 , 'r1', 'HRO'
             ],
             //row 3
             [{
                     'v': 'r3c1'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Luis Hutasoit</b><div style="color:#6d6d6d; font-style:italic">Recruitment Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrsuprecruit">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Luis Hutasoit</b><div style="color:#6d6d6d; font-style:italic">Recruitment Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-hrsuprecruit">80%</button></div>'
                 }
                 , 'r2c1', 'RS'
             ]
             , [{
                     'v': 'r3c2'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Kayun Samsul Sitorus</b><div style="color:#6d6d6d; font-style:italic">Training Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-suptraining">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Kayun Samsul Sitorus</b><div style="color:#6d6d6d; font-style:italic">Training Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-suptraining">80%</button></div>'
                 }
                 , 'r2c1', 'TS'
             ]
             , [{
                     'v': 'r3c3'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Teddy Kurnia Halim</b><div style="color:#6d6d6d; font-style:italic">OD Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-supod">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Teddy Kurnia Halim</b><div style="color:#6d6d6d; font-style:italic">OD Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-supod">80%</button></div>'
                 }
                 , 'r2c1', 'ODS'
             ]
             , [{
                     'v': 'r3c4'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Kiandra Wulandari</b><div style="color:#6d6d6d; font-style:italic">HR Operations Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-suphr">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Kiandra Wulandari</b><div style="color:#6d6d6d; font-style:italic">HR Operations Supervisor</div><button class="btn btn-light" data-toggle="modal" data-target="#data-suphr">80%</button></div>'
                 }
                 , 'r2c2', 'HROS'
             ]
             , [{
                     'v': 'r3c5'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Cornelia Purwanti</b><div style="color:#6d6d6d; font-style:italic">IR & GA Supervisor</div><button class="btn btn-light"  data-toggle="modal" data-target="#data-supirga">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Cornelia Purwanti</b><div style="color:#6d6d6d; font-style:italic">IR & GA Supervisor</div><button class="btn btn-light"  data-toggle="modal" data-target="#data-supirga">80%</button></div>'
                 }
                 , 'r2c2', 'IRGAS'
             ],
             //row 4
             [{
                     'v': 'r4c1'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Kani Lailasari</b><div style="color:#6d6d6d; font-style:italic">Recruitment Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffrecruit">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Kani Lailasari</b><div style="color:#6d6d6d; font-style:italic">Recruitment Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffrecruit">80%</button></div>'
                 }
                 , 'r3c1', 'RSt'
             ]
             , [{
                     'v': 'r4c2'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Rafi Hidayat</b><div style="color:#6d6d6d; font-style:italic">Training Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-stafftraining">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Rafi Hidayat</b><div style="color:#6d6d6d; font-style:italic">Training Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-stafftraining">80%</button></div>'
                 }
                 , 'r3c2', 'TSt'
             ]
             , [{
                     'v': 'r4c3'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Dono Prakasa</b><div style="color:#6d6d6d; font-style:italic">OD Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffod">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Dono Prakasa</b><div style="color:#6d6d6d; font-style:italic">OD Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffod">80%</button></div>'
                 }
                 , 'r3c3', 'ODSt'
             ]
             , [{
                     'v': 'r4c4'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Salman Prasetyo</b><div style="color:#6d6d6d; font-style:italic">HR Operation Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffhr">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Salman Prasetyo</b><div style="color:#6d6d6d; font-style:italic">HR Operation Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffhr">80%</button></div>'
                 }
                 , 'r3c4', 'HROSt'
             ]
             , [{
                     'v': 'r4c5'
-                    , 'f': '<div class="chart-card"><img src="{{ asset("img/dummy-profile.svg") }}" class="img-team"><b>Siti Fujiati</b><div style="color:#6d6d6d; font-style:italic">GA Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffga">80%</button></div>'
+                    , 'f': '<div class="chart-card"><img src="{{ asset("public/img/dummy-profile.svg") }}" class="img-team"><b>Siti Fujiati</b><div style="color:#6d6d6d; font-style:italic">GA Staff</div><button class="btn btn-light" data-toggle="modal" data-target="#data-staffga">80%</button></div>'
                 }
                 , 'r3c5', 'GASt'
             ]
@@ -435,15 +385,17 @@
         }
     }
 
+    
     function modalTitle() {
-        const x = document.querySelectorAll(".btn-update");
-        const title = document.getElementsByClassName('titleUpdate');
-        for (let i = 0; i < x.length; i++) {
-            x[i].addEventListener("click", function() {
-                $('#updateModal').modal('show');
-                $('#updateModalLabel').html(title[i].innerHTML);
-            });
-        }
+        $(".btn-update").click(function () {
+            
+            $('#updateModal').modal('show');
+            var title = $(this).parent().parent().find('.titleUpdate').html();
+            var idEmployeeGoal = $(this).parent().find('.idEmployeeGoal').val();
+                $('#updateModalLabel').html(title);
+                $('#idEmployeeGoal').val(idEmployeeGoal);
+            
+        });
     }
     modalTitle();
 

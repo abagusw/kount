@@ -1,22 +1,22 @@
-const navtoggle = document.querySelector('.nav-toggle');
-const navmenuback = document.querySelector('.nav-menu-back');
-const sidebaroverlay = document.querySelector('.sidebar-overlay');
-const sidebar = document.querySelector('.main-sidebar');
+navtoggle = document.querySelector('.nav-toggle');
+navmenuback = document.querySelector('.nav-menu-back');
+sidebaroverlay = document.querySelector('.sidebar-overlay');
+sidebar = document.querySelector('.main-sidebar');
 navtoggle.onclick = () => sidebar.classList.toggle('active');
 // navmenuback.onclick = () => sidebar.classList.toggle('active');
 sidebaroverlay.onclick = () => sidebar.classList.toggle('active');
 
-const navtask = document.querySelector('.nav-task');
-const sidenav = document.querySelector('.sidenav');
+navtask = document.querySelector('.nav-task');
+sidenav = document.querySelector('.sidenav');
 // navtask.onclick = () => sidenav.classList.toggle('active');
 
-const navitem = document.querySelector('.nav-item');
-const navlink = document.querySelector('.nav-link');
+navitem = document.querySelector('.nav-item');
+navlink = document.querySelector('.nav-link');
 navlink.onclick = () => navitem.classList.toggle('active');
 
-const currentLocation = location.href;
-const menuItem = document.querySelectorAll('.nav-link');
-const menuLength = menuItem.length;
+currentLocation = location.href;
+menuItem = document.querySelectorAll('.nav-link');
+menuLength = menuItem.length;
 for (let i = 0; i < menuLength; i++) {
     if (menuItem[i].href === currentLocation) {
         menuItem[i].classList.add("active");

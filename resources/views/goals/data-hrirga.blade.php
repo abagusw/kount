@@ -5,7 +5,7 @@
                 <div class="row mt-4">
                     <div class="col-auto">
                         <div class="image">
-                            <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;" id="imgTeam">
+                            <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;" id="imgTeam">
                         </div>
                     </div>
                     <div class="col my-auto">

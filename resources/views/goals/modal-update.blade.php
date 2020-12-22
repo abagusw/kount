@@ -8,9 +8,11 @@
                 </button>
             </div>
             <div class="modal-body mx-auto">
-                <form>
+                <form method="POST" action="{{ route('goal.update') }}"  id="submitDataGoals">
+                    {{ csrf_field() }}
                     <div class="form-group">
-                        <input type="text" placeholder="Enter new amount" style="width: 100%;" id="newAmount" />
+                        <input type="hidden" id="idEmployeeGoal" name="idEmployeeGoal"/>
+                        <input type="number" placeholder="Enter new amount" style="width: 100%;" id="newAmount" name="newAmount"/>
                     </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between">
@@ -22,11 +24,9 @@
                         <input type="file" class="form-control-file" id="formFile">
                     </div>
                     <div class="col text-center">
+                        <button type="submit" class="btn bg-oren" onclick="updateProgress()"><strong><i>Submit</i></strong></button>
                     </div>
                 </form>
-                <div class="col text-center">
-                    <button type="submit" class="btn bg-oren" onclick="updateProgress()"><strong><i>Submit</i></strong></button>
-                </div>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto">
-                    <img src="{{ asset('img/dummy-profile.svg') }}" class="img-project-card">
+                    <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-project-card">
                 </div>
                 <div class="col">
                     <h4>Road Recruitment to Top 5 Universities</h4>
@@ -47,10 +47,10 @@
             <div class="row no-gutters align-items-center justify-content-between">
                 <div>
                     <ul class="row no-gutters list-assigned p-0">
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
                     </ul>
                 </div>
                 <div><a href="{{ route('dash.projects.detail') }}" class="btn btn-primary"><em>See Details</em></a></div>
@@ -66,7 +66,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto">
-                    <img src="{{ asset('img/dummy-profile.svg') }}" class="img-project-card">
+                    <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-project-card">
                 </div>
                 <div class="col">
                     <h4>Individual Development Plan Completion (company level)</h4>
@@ -87,11 +87,11 @@
             <div class="row no-gutters align-items-center justify-content-between">
                 <div>
                     <ul class="row no-gutters list-assigned p-0">
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#member-list"><img src="{{ asset('public/img/dummy-profile.svg') }}"></a></li>
                         <li class="text-gray"><a href="" data-toggle="modal" data-target="#member-list"><em>and 29 more</em></a></li>
                     </ul>
                 </div>

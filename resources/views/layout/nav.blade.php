@@ -1,7 +1,7 @@
 <!-- Image and text -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white elevation-1 fixed-top">
     <a class="navbar-brand" href="#">
-        <img src="{{ asset('img/logo-with-text.svg') }}" width="100" height="20" class="d-inline-block align-top" alt="" loading="lazy">
+        <img src="{{ asset('public/img/logo2.png') }}" width="100" height="20" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <h5 class="text-primary ml-4" id="date"></h5>
     <span class="border-right ml-1" style="border-color: #FFC045 !important;">&nbsp;</span>
@@ -21,7 +21,7 @@
                         <li>2 leave request(s) to approve</li>
                     </ul>
                     <div class="col text-center my-4">
-                        <a href="#" class="btn btn-primary">See all</a>
+                        <a href="{{ route('dash.notifications') }}" class="btn btn-primary">See all</a>
                     </div>
                     <h5>Ongoing Project</h5>
                     <p class="mt-2">Monday, 09 Nov 2020</p>
@@ -41,7 +41,7 @@
                 <a class="nav-link" href="{{ route('dash.settings') }}"><i class="fas fa-cog text-primary fa-2x"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="{{ asset('img/dummy-profile-secondary.svg') }}" class="img-circle elevation-2" alt="User Image" width="30px"></a>
+                <a class="nav-link" href="#"><img src="{{ asset('public/img/dummy-profile-secondary.svg') }}" class="img-circle elevation-2" alt="User Image" width="30px"></a>
             </li>
         </ul>
     </div>

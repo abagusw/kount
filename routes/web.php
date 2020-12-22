@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GoalsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('login')->get('/login', [LoginController::class, 'index']);
+Route::name('logout')->get('/logout', [LoginController::class, 'logout']);
 Route::name('dologin')->post('/login/dologin', [LoginController::class, 'doLogin']);
-Route::name('dash.home')->get('/', [HomeController::class, 'index']);
+
+// Route::group(['middleware' => ['auth', 'acl:web']], function () {
+    //home
+    Route::get('/', [HomeController::class, 'index'])->name('dash.home');
+
+    //goals
+    Route::get('/goals', [GoalsController::class, 'index'])->name('dash.goals');
+    Route::post('/goal/add', [GoalsController::class, 'save'])->name('goal.add');
+    Route::post('/goal/update', [GoalsController::class, 'update'])->name('goal.update');
+// });
 Route::get('/projects', function () {
     return view('projects.index');
 })->name('dash.projects');
@@ -25,10 +36,6 @@ Route::get('/projects', function () {
 Route::get('/projects/detail', function () {
     return view('projects.detail');
 })->name('dash.projects.detail');
-
-Route::get('/goals', function () {
-    return view('goals.index');
-})->name('dash.goals');
 
 Route::get('/leave', function () {
     return view('leave.index');

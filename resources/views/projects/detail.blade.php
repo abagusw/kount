@@ -18,7 +18,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto">
-                    <img src="{{ asset('img/dummy-profile.svg') }}" class="img-project-card">
+                    <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-project-card">
                 </div>
                 <div class="col">
                     <h4>Road Recruitment to Top 5 Universities</h4>
@@ -36,10 +36,10 @@
             <div class="row no-gutters align-items-center justify-content-between">
                 <div>
                     <ul class="row no-gutters list-assigned p-0">
-                        <li><img src="{{ asset('img/dummy-profile.svg') }}"></li>
-                        <li><img src="{{ asset('img/dummy-profile.svg') }}"></li>
-                        <li><img src="{{ asset('img/dummy-profile.svg') }}"></li>
-                        <li><img src="{{ asset('img/dummy-profile.svg') }}"></li>
+                        <li><img src="{{ asset('public/img/dummy-profile.svg') }}"></li>
+                        <li><img src="{{ asset('public/img/dummy-profile.svg') }}"></li>
+                        <li><img src="{{ asset('public/img/dummy-profile.svg') }}"></li>
+                        <li><img src="{{ asset('public/img/dummy-profile.svg') }}"></li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                         <div class="col-auto">
                             <div class="row list-assigned align-items-center mb-3">
                                 <div class="col-auto">
-                                    <img src="{{ asset('img/dummy-profile.svg') }}">
+                                    <img src="{{ asset('public/img/dummy-profile.svg') }}">
                                 </div>
                                 <div class="text-primary">Team Member 2</div>
                             </div>
@@ -79,7 +79,7 @@
                         <div class="col-auto">
                             <div class="row list-assigned align-items-center mb-3">
                                 <div class="col-auto">
-                                    <img src="{{ asset('img/dummy-profile.svg') }}">
+                                    <img src="{{ asset('public/img/dummy-profile.svg') }}">
                                 </div>
                                 <div class="text-primary">Jess Effendy</div>
                             </div>

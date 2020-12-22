@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="text-right mb-3">
-                    <img src="{{ asset('img/logo-with-text.svg') }}" alt="Logo" width="150px">
+                    <img src="{{ asset('public/img/logo-with-text.svg') }}" alt="Logo" width="150px">
                 </div>
                 <h3>21 October 2020 - 21 November 2020</h3>
                 <div class="row mt-3">

@@ -2,7 +2,7 @@
 
 @section('css')
 <!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+<link rel="stylesheet" href="{{ asset('public/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <style>
@@ -40,7 +40,7 @@
                                     <div class="row mt-4">
                                         <div class="col-auto">
                                             <div class="image">
-                                                <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;">
+                                                <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;">
                                             </div>
                                         </div>
                                         <div class="col my-auto">
@@ -111,8 +111,8 @@
 
 @section('js')
 <!-- DataTables -->
-<script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('public/plugins/datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('public/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 <script>
     $(function () {
         $('#payslipTable').DataTable({

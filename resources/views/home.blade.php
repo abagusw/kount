@@ -1,11 +1,34 @@
 @extends('layout.dash')
-
+@section('css')
+<style>
+    .separator {
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .separator::before, .separator::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #000;
+    }
+    .separator::before {
+        margin-right: .25em;
+    }
+    .separator::after {
+        margin-left: .25em;
+    }
+    .text-jumbo{
+        font-size: 5rem;
+    }
+</style>
+@endsection
 @section('content')
-<section id="todo">
+<section id="notif">
+    <h2 class="mb-4">Hello, Jess Effendy</h2>
     <div class="content-header">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">To-Do</h1>
+                <h3 class="m-0 text-dark">Notifications (<span class="text-danger">5</span>)</h3>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div>
@@ -16,16 +39,16 @@
                     <div class="card-body">
                         <div class="row my-2">
                             <div class="col-auto">
-                                <img src="{{ asset('img/dummy-profile.svg') }}" alt="User Image" width="60px">
+                                <img src="{{ asset('public/img/dummy-profile.svg') }}" alt="User Image" width="60px">
                             </div>
                             <div class="col">
                                 <div class="row justify-content-between">
                                     <div class="col-12 col-sm">
-                                        <h5>Submit Weekly Report</h5>
-                                        <p>Insert Description Here...</p>
+                                        <h5>Leave Request By <span class="text-primary">Rina Elma Suartini</span></h5>
+                                        <p>Click For More Details...</p>
                                     </div>
                                     <div class="col-auto">
-                                        Due <span style="color: #59BECD;">Friday, 09 Oct 2020</span>
+                                        <span class="text-notif">13:15 | 05 Oct 2020</span>
                                     </div>
                                 </div>
                             </div>
@@ -36,27 +59,30 @@
                     <div class="card-body">
                         <div class="row my-2">
                             <div class="col-auto">
-                                <img src="{{ asset('img/dummy-profile.svg') }}" alt="User Image" width="60px">
+                                <img src="{{ asset('public/img/dummy-profile.svg') }}" alt="User Image" width="60px">
                             </div>
                             <div class="col">
                                 <div class="row justify-content-between">
                                     <div class="col-12 col-sm">
-                                        <h5>Submit Weekly Report</h5>
-                                        <p>Insert Description Here...</p>
+                                        <h5>New Project Request Titled <span class="text-primary">Individual Development Plan Completion (company level)</span></h5>
+                                        <p>Click For More Details...</p>
                                     </div>
                                     <div class="col-auto">
-                                        Due <span style="color: #59BECD;">Friday, 09 Oct 2020</span>
+                                        <span class="text-notif">13:15 | 05 Oct 2020</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
             <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
     </div>
+    <div class="separator mb-2">And <span class="text-primary">3</span> More</div>
+    <button class="btn btn-secondary btn-block">See All</button>
 </section>
 
 <!-- goal&team new -->
@@ -124,47 +150,30 @@
         <div id="teams">
             <div class="content-header">
                 <div class="container mb-2">
-                    <h1 class="m-0 text-dark">Teams</h1>
+                    <h1 class="m-0 text-dark">Goals Overview</h1>
                 </div><!-- /.container-fluid -->
             </div>
             <div class="content">
                 <div class="container">
-                    <div class="card p-3">
-                        <ul type="none" class="row no-gutters my-auto p-0 mb-0">
-                            <li class="col-12 col-sm-4 text-md-center mb-3 m-sm-0">
-                                <div class="row no-gutters flex-sm-column align-items-center justify-content-sm-center">
-                                    <div class="image pr-3 pr-sm-0 mb-sm-3">
-                                        <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" width="50px" alt="User Image">
-                                    </div>
-                                    <div>
-                                        <p>Team Member 1</p>
-                                        <i style="color: #59BECD;">Role</i>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-12 col-sm-4 text-md-center mb-3 m-sm-0">
-                                <div class="row no-gutters flex-sm-column align-items-center justify-content-sm-center">
-                                    <div class="image pr-3 pr-sm-0 mb-sm-3">
-                                        <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" width="50px" alt="User Image">
-                                    </div>
-                                    <div>
-                                        <p>Team Member 1</p>
-                                        <i style="color: #59BECD;">Role</i>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-12 col-sm-4 text-md-center mb-3 m-sm-0">
-                                <div class="row no-gutters flex-sm-column align-items-center justify-content-sm-center">
-                                    <div class="image pr-3 pr-sm-0 mb-sm-3">
-                                        <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" width="50px" alt="User Image">
-                                    </div>
-                                    <div>
-                                        <p>Team Member 1</p>
-                                        <i style="color: #59BECD;">Role</i>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="card p-4">
+                        <div class="row text-center my-auto">
+                            <div class="col border-left">
+                                <p>On Track</p>
+                                <p class="text-jumbo text-primary">3</p>
+                            </div>
+                            <div class="col border-left">
+                                <p>Off Track</p>
+                                <p class="text-jumbo text-danger">1</p>
+                            </div>
+                            <div class="col border-left">
+                                <p>Exceeded</p>
+                                <p class="text-jumbo text-success">2</p>
+                            </div>
+                            <div class="col border-left border-right">
+                                <p>Blocks</p>
+                                <p class="text-jumbo text-warning">1</p>
+                            </div>
+                        </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </div>

@@ -1,7 +1,7 @@
 @extends('layout.dash')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('public/plugins/daterangepicker/daterangepicker.css') }}">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <style>
@@ -42,7 +42,7 @@
                                     <div class="row mt-4">
                                         <div class="col-auto">
                                             <div class="image">
-                                                <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px">
+                                                <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px">
                                             </div>
                                         </div>
                                         <div class="col my-auto">
@@ -72,7 +72,7 @@
                                     <div class="row mt-4">
                                         <div class="col-auto">
                                             <div class="image">
-                                                <img src="{{ asset('img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;">
+                                                <img src="{{ asset('public/img/dummy-profile.svg') }}" class="img-circle elevation-2" alt="User Image" width="80px" style="background-color: #0B92AB;">
                                             </div>
                                         </div>
                                         <div class="col my-auto">
@@ -205,9 +205,9 @@
 
 @section('js')
 <!-- InputMask -->
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('public/plugins/moment/moment.min.js') }}"></script>
 <!-- date-range-picker -->
-<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('public/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
 <script type="text/javascript">
     $(function() {

@@ -9,39 +9,44 @@
             </div>
 
             <div class="modal-body">
-                <form action="">
+                <form method="POST" action="{{ route('goal.add') }}"  id="submitDataGoals">
+                    {{ csrf_field() }}
                     <div class="form-group row">
-                        <label for="goal-target" class="col-sm-3 col-form-label"><em>Target Goal</em></label>
-                        <div class="col-sm-3">
-                            <input type="text" name="" id="goal-target" class="form-control" placeholder="Value to Reach Goal">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="goal-name" class="col-sm-3 col-form-label"><em>Name</em></label>
+                        <label for="goal_name" class="col-sm-3 col-form-label"><em>Name</em></label>
                         <div class="col-sm-9">
-                            <input type="text" name="" id="goal-name" class="form-control" placeholder="Name of the Goal">
+                            <input type="text" name="goal_name" id="goal_name" class="form-control" placeholder="Name of the Goal">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="goal-metrics" class="col-sm-3 col-form-label"><em>Metrics</em></label>
+                        <label for="weight" class="col-sm-3 col-form-label"><em>Weight Goal (%)</em></label>
                         <div class="col-sm-3">
-                            <input type="text" name="" id="goal-metrics" class="form-control" placeholder="Units of the Value">
+                            <input type="number" min=0 max=100 name="weight" id="weight" class="form-control" placeholder="Value to Reach Goal">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-3 col-form-label"><em>Type</em></label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="type" id="type">
+                              @foreach ( $types as $key => $value)
+                                  <option value="{{ $key }}">{{ $value }}</option>
+                              @endforeach  
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="goal-lowest" class="col-sm-6 col-form-label">Lowest Value</label>
+                                <label for="lower_limit" class="col-sm-6 col-form-label">Lowest Value</label>
                                 <div class="col-sm-6">
-                                    <input type="number" name="" class="form-control" id="goal-lowest" placeholder="Value to be 0%">
+                                    <input type="number" name="lower_limit" id="lower_limit" class="form-control" id="goal-lowest" placeholder="Value to be 0%">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="goal-highest" class="col-sm-6 col-form-label">Highest Value</label>
+                                <label for="upper_limit" class="col-sm-6 col-form-label">Highest Value</label>
                                 <div class="col-sm-6">
-                                    <input type="number" name="" class="form-control" id="goal-highest" placeholder="Value to be 100%">
+                                    <input type="number" name="upper_limit" id="upper_limit" class="form-control" id="goal-highest" placeholder="Value to be 100%">
                                 </div>
                             </div>
                         </div>
@@ -49,7 +54,7 @@
                     <!-- </div>
         <div class="modal-footer"> -->
                     <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">
+                        <button type="submit" name="submitButton" value="submit" class="btn btn-secondary">
                             Add Goal
                         </button>
                         <!-- <button type="button" class="btn btn-primary">Create Project</button> -->

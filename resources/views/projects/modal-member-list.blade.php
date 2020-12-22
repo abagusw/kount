@@ -12,21 +12,21 @@
                 <ul>
                     <li class="row no-gutters align-items-center justify-content-between mb-3">
                         <div class="row no-gutters align-items-center">
-                            <img src="{{ asset('img/dummy-profile.svg') }}" class="mr-3" width="50px">
+                            <img src="{{ asset('public/img/dummy-profile.svg') }}" class="mr-3" width="50px">
                             <div class="text-primary">Jess Effendy</div>
                         </div>
                         {{-- <em class="text-pending">Pending</em> --}}
                     </li>
                     <li class="row no-gutters align-items-center justify-content-between mb-3">
                         <div class="row no-gutters align-items-center">
-                            <img src="{{ asset('img/dummy-profile.svg') }}" class="mr-3" width="50px">
+                            <img src="{{ asset('public/img/dummy-profile.svg') }}" class="mr-3" width="50px">
                             <div class="text-primary">Team Membar 2</div>
                         </div>
                         {{-- <em class="text-pending">Pending</em> --}}
                     </li>
                     <li class="row no-gutters align-items-center justify-content-between mb-3">
                         <div class="row no-gutters align-items-center">
-                            <img src="{{ asset('img/dummy-profile-not-confirmed.svg') }}" class="mr-3" width="50px">
+                            <img src="{{ asset('public/img/dummy-profile-not-confirmed.svg') }}" class="mr-3" width="50px">
                             <div class="text-primary">Team Member 2</div>
                         </div>
                         <em class="text-pending">Pending</em>

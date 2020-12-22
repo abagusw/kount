@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kount</title>
 
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/login.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="text-center">
-            <img src="{{ asset('img/logo-with-text.svg') }}" alt="Logo">
+            <img src="{{ asset('public/img/logo-with-text.svg') }}" alt="Logo">
         </div>
         <div class="col">
             <div class="card">
                 <div class="title">Member Login</div>
+
                 @if(session('message'))
                 <div class="alert alert-{{session('message')['status']}}">
                     {{ session('message')['desc'] }}
@@ -35,7 +36,7 @@
 
                     <button type="submit" class="btn-login"><em>Log In</em></button>
                 </form>
-                {{-- <div class="text-center">Forgot your <a href=""><strong>login details?</strong></a></div> --}}
+                <div class="text-center">Forgot your <a href=""><strong>login details?</strong></a></div>
             </div>
         </div>
     </div>
