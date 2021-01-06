@@ -411,6 +411,74 @@
         $('#chartModal').modal('hide');
     }
 
+    $('#type').change(function () { 
+        var type = $(this).val();
+        $(".form-goal-type").hide();
+        if(type == "zero"){
+            $(".form-zero").show();
+        }else if(type == "percent"){
+            $(".form-percent").show();
+        }else if(type == "amount_plus"){
+            $(".form-amount-plus").show();
+        }else if(type == "amount_min"){
+            $(".form-amount-min").show();
+        }
+    });
+
+    $('#weight').on('input', function () {
+        var value = $(this).val();        
+        if ((value !== '') && (value.indexOf('.') === -1)) {            
+            $(this).val(Math.max(Math.min(value, 100), 0));
+        }
+    });
+
+    $('#percent_val').on('input', function () {
+        var value = $(this).val();        
+        if ((value !== '') && (value.indexOf('.') === -1)) {        
+            if(Number(value) < 0){
+                snackbarShow("amount value is to low");
+            }else if(Number(value) > 100){
+                snackbarShow("amount value is to high");
+            }
+            $(this).val(Math.max(Math.min(Number(value), 100), 0));
+        }
+    });
+
+    $('#zero_val').on('input', function () {
+        var value = $(this).val();        
+        if ((value !== '') && (value.indexOf('.') === -1)) {     
+            if(Number(value) < 0){
+                snackbarShow("amount value is to low");
+            }else if(Number(value) > Number($("#upper_zero_limit").val())){
+                snackbarShow("amount value is to high");
+            }
+            $(this).val(Math.max(Math.min(Number(value), Number($("#upper_zero_limit").val())), 0));
+        }
+    });
+
+    $('#amount_plus_val').on('input', function () {
+        var value = $(this).val();
+        if ((value !== '') && (value.indexOf('.') === -1)) {    
+            if(Number(value) < Number($("#lower_plus_limit").val())){
+                snackbarShow("amount value is to low");
+            }else if(Number(value) > Number($("#upper_plus_limit").val())){
+                snackbarShow("amount value is to high");
+            }                 
+            $(this).val(Math.max(Math.min(Number(value), Number($("#upper_plus_limit").val())), Number($("#lower_plus_limit").val())));
+        }
+    });
+
+    $('#amount_minus_val').on('input', function () {
+        var value = $(this).val();        
+        if ((value !== '') && (value.indexOf('.') === -1)) {      
+            if(Number(value) < Number($("#lower_minus_limit").val())){
+                snackbarShow("amount value is to low");
+            }else if(Number(value) > Number($("#upper_minus_limit").val())){
+                snackbarShow("amount value is to high");
+            }      
+            $(this).val(Math.max(Math.min(Number(value, Number($("#upper_minus_limit").val())), Number($("#lower_minus_limit").val()))));
+        }
+    });
 </script>
 
 @endsection

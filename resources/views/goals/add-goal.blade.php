@@ -20,12 +20,12 @@
                     <div class="form-group row">
                         <label for="weight" class="col-sm-3 col-form-label"><em>Weight Goal (%)</em></label>
                         <div class="col-sm-3">
-                            <input type="number" min=0 max=100 name="weight" id="weight" class="form-control" placeholder="Value to Reach Goal">
+                            <input type="number" min="0" max="100" name="weight" id="weight" class="form-control" placeholder="Value to Reach Goal">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="type" class="col-sm-3 col-form-label"><em>Type</em></label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="type" id="type">
                               @foreach ( $types as $key => $value)
                                   <option value="{{ $key }}">{{ $value }}</option>
@@ -33,20 +33,90 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-md-6">
+                    <div class="form-row form-zero form-goal-type">
+                        <div class="col-md-12">
                             <div class="form-group row">
-                                <label for="lower_limit" class="col-sm-6 col-form-label">Lowest Value</label>
-                                <div class="col-sm-6">
-                                    <input type="number" name="lower_limit" id="lower_limit" class="form-control" id="goal-lowest" placeholder="Value to be 0%">
+                                <label for="upper_zero_limit" class="col-sm-3 col-form-label">Highest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="upper_zero_limit" id="upper_zero_limit" class="form-control" placeholder="upper amount" value="100">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
+                        <div class="form-group row">
+                            <label for="lower_zero_limit" class="col-sm-3 col-form-label">Lowest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="lower_zero_limit" id="lower_zero_limit" class="form-control" placeholder="lower amount" value="0" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group row">
-                                <label for="upper_limit" class="col-sm-6 col-form-label">Highest Value</label>
+                                <label for="zero_val" class="col-sm-3 col-form-label">Value Now</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="zero_val" id="zero_val" class="form-control" placeholder="Value 0 to finish" min="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row form-percent form-goal-type" style="display: none">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="percent_val" class="col-sm-3 col-form-label">Value Now</label>
                                 <div class="col-sm-6">
-                                    <input type="number" name="upper_limit" id="upper_limit" class="form-control" id="goal-highest" placeholder="Value to be 100%">
+                                    <input type="number" name="percent_val" id="percent_val" class="form-control" placeholder="Value 100 to finish" min="0" max="100"> %
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row form-amount-plus form-goal-type" style="display: none">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="lower_plus_limit" class="col-sm-3 col-form-label">Lowest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="lower_plus_limit" id="lower_plus_limit" class="form-control" placeholder="lower amount" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="upper_plus_limit" class="col-sm-3 col-form-label">Highest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="upper_plus_limit" id="upper_plus_limit" class="form-control" placeholder="upper amount" value="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="amount_plus_val" class="col-sm-3 col-form-label">Value Now</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="amount_plus_val" id="amount_plus_val" class="form-control" placeholder="Value upper amount to finish" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row form-amount-min form-goal-type" style="display: none">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="lower_minus_limit" class="col-sm-3 col-form-label">Lowest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="lower_minus_limit" id="lower_minus_limit" class="form-control" placeholder="lower amount" value="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="upper_minus_limit" class="col-sm-3 col-form-label">Highest Value</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="upper_minus_limit" id="upper_minus_limit" class="form-control" placeholder="upper amount" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="amount_minus_val" class="col-sm-3 col-form-label">Value Now</label>
+                                <div class="col-sm-5">
+                                    <input type="number" name="amount_minus_val" id="amount_minus_val" class="form-control" placeholder="Value upper amount to finish" value="100">
                                 </div>
                             </div>
                         </div>

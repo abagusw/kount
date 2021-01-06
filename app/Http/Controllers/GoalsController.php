@@ -51,8 +51,33 @@ class GoalsController extends Controller
         }else{
             $goal = new Goals;
             $goal->goal_name = $request->goal_name;
-            $goal->upper_limit = $request->upper_limit;
-            $goal->lower_limit = $request->lower_limit;
+            $upper_limit = 0;
+            $lower_limit = 0;
+            $current_progress = 0;
+            $percentage = 0;
+            if($request->type == 'zero'){
+                $upper_limit = $request->upper_zero_limit;
+                $lower_limit = $request->lower_zero_limit;
+                $current_progress = $request->zero_val;
+                $percentage = (($current_progress - $lower_limit) * 100) / ($upper_limit - $lower_limit);
+            }else if($request->type == 'percent'){
+                $upper_limit = 0;
+                $lower_limit = 0;
+                $current_progress = $request->percent_val;
+                $percentage = $current_progress;
+            }else if($request->type == 'amount_plus'){
+                $upper_limit = $request->upper_plus_limit;
+                $lower_limit = $request->lower_plus_limit;
+                $current_progress = $request->amount_plus_val;
+                $percentage = (($current_progress - $lower_limit) * 100) / ($upper_limit - $lower_limit);
+            }else if($request->type == 'amount_min'){
+                $upper_limit = $request->upper_minus_limit;
+                $lower_limit = $request->lower_minus_limit;
+                $current_progress = $request->amount_minus_val;
+                $percentage = (($current_progress - $lower_limit) * 100) / ($upper_limit - $lower_limit);
+            }
+            $goal->upper_limit = $upper_limit;
+            $goal->lower_limit = $lower_limit;
             $goal->weight = $request->weight;
             $goal->type = $request->type;
             $goal->save();
@@ -63,8 +88,8 @@ class GoalsController extends Controller
                 $employeeGoals = new EmployeeGoals;
                 $employeeGoals->employee_id = session('employee_id_login');
                 $employeeGoals->goal_id = $goal->id;
-                $employeeGoals->current_progress = 0;
-                $employeeGoals->percentage = 0;
+                $employeeGoals->current_progress = $current_progress;
+                $employeeGoals->percentage = $percentage;
                 $employeeGoals->save();
                 if($employeeGoals){
                     $message = "Add goal success";

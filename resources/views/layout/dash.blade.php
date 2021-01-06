@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         @include('layout.nav')
         @include('layout.navigation-bar')
-
+        <div id="snackbar">Some text some message..</div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper px-1 px-sm-3 px-md-5">
 
@@ -112,6 +112,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('public/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('public/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <script src="{{ asset('public/js/main.js') }}"></script>
+    <script>
+        function snackbarShow(message) { 
+            $("#snackbar").html(message);
+            
+            $("#snackbar").addClass('show');
+            setTimeout(function(){
+                $("#snackbar").removeClass('show');
+            },3000);
+        }
+    </script>
     @yield('js')
 </body>
 
