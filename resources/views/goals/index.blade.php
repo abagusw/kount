@@ -84,9 +84,9 @@
 
                     @if (isset($status))
                         @if ($status)
-                        <p class="text-success">{{ $message }}</p> 
+                        <p class="text-success">{{ $message }}</p>
                         @else
-                        <p class="text-danger">{{ $message }}</p> 
+                        <p class="text-danger">{{ $message }}</p>
                         @endif
                     @endif
                 </div><!-- /.col -->
@@ -129,22 +129,40 @@
                                     </div>
                                     <div class="row">
                                         <ul class="col">
-                                            
+
                                             @foreach ($goals as $item)
-                                                
+
                                             <li class="row mt-4">
                                                 <div class="col align-self-center">
                                                     <div class="row align-items-center">
-                                                        <div class="col-12 col-md-7 titleUpdate">
+                                                        <div class="col-12 col-md-5 titleUpdate">
                                                             {{ $item->goal->goal_name }}
                                                         </div>
-                                                        <div class="col-12 col-md-4">
+                                                        <div class="col-12 col-md-5">
                                                             <div class="progress">
-                                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #59BECD; color: #FFC045;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="prog4">100%</div>
+                                                                <div class="progress-bar hitung_percentage" role="progressbar" style="width: {{ $item->goal->current_percentage }}%; background-color: #59BECD; color: #FFC045;" aria-valuenow="{{ $item->goal->current_percentage }}" aria-valuemin="0" aria-valuemax="100" id="prog4">{{ $item->goal->current_percentage }}%</div>
                                                             </div>
                                                         </div>
                                                         <div class="col text-md-center">
-                                                            0/0
+                                                            @if ($item->goal->type == "zero")
+                                                            DONE : {{ $item->current_progress }}<br>
+                                                            Total : {{ $item->goal->lower_limit }}<br>
+                                                            Must Finish : {{ $item->goal->lower_limit - $item->current_progress }} agains<br>
+                                                            Weight : {{ $item->goal->weight }} % <br>
+                                                            note: finish all to finish
+                                                            @elseif($item->goal->type == "amount_plus")
+                                                            DONE : {{ $item->current_progress }}<br>
+                                                            Total : {{ $item->goal->upper_limit - $item->goal->lower_limit}}<br>
+                                                            Must Finish : {{ ($item->goal->upper_limit - $item->goal->lower_limit) - $item->current_progress }} agains<br>
+                                                            Weight : {{ $item->goal->weight }} % <br>
+                                                            note: finish till {{ $item->goal->upper_limit }} from {{ $item->goal->lower_limit }}
+                                                            @elseif($item->goal->type == "amount_minus")
+                                                            DONE : {{ $item->current_progress }}<br>
+                                                            Total : {{ $item->goal->lower_limit - $item->goal->upper_limit}}<br>
+                                                            Must Finish : {{ ($item->goal->lower_limit - $item->goal->upper_limit) - $item->current_progress }} agains<br>
+                                                            Weight : {{ $item->goal->weight }} % <br>
+                                                            note: finish till {{ $item->goal->lower_limit }} from {{ $item->goal->upper_limit }}
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,6 +218,7 @@
 <!-- Sparkline -->
 <script src="{{ asset('public/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('public/js/main.js') }}"></script>
+
 <script>
     var Team_Panel = document.getElementById('Team_Panel');
     var Individual_Panel = document.getElementById('Individual_Panel');
@@ -230,22 +249,35 @@
     });
 
     function showChartPercent() {
-        var hasil_val = () => {
-            let arr = [];
-            [0, 1, 2, 3].forEach(item => {
-                arr.push(parseInt(document.getElementsByClassName(`progress-bar`)[item].getAttribute('aria-valuenow')));
-            });
-            var sum = arr.reduce(function(a, b) {
-                return a + b;
-            }, 0);
-            var n = Math.round(sum / 4);
-            return n;
-        }
-        document.getElementById("persen").value = hasil_val() + '%';
-        setTimeout(showChartPercent, 1000);
+        // var hasil_val = () => {
+        //     let arr = [];
+        //     [0, 1, 2, 3].forEach(item => {
+        //         arr.push(parseInt(document.getElementsByClassName(`progress-bar`)[item].getAttribute('aria-valuenow')));
+        //     });
+        //     var sum = arr.reduce(function(a, b) {
+        //         return a + b;
+        //     }, 0);
+        //     var n = Math.round(sum / 4);
+        //     return n;
+        // }
+        var sum = 0;
+        var count = 1;
+        $.each($(".hitung_percentage"), function( index, value ) {
+            sum += parseInt($(this).attr('aria-valuenow'));
+            console.log(sum);
+            count++;
+        });
+        var percentage = Math.round(sum / count);
+        document.getElementById("persen").value = percentage + '%';
+        // setTimeout(showChartPercent, 1000);
         $("input.knob").trigger('change');
     }
-    showChartPercent();
+
+    @if (sizeof($goals)>0)
+        showChartPercent();
+    @else
+        document.getElementById("persen").value = 0 + '%';
+    @endif
 
     function updateProgress() {
         var inputVal = document.getElementById("newAmount").value;
@@ -385,16 +417,16 @@
         }
     }
 
-    
+
     function modalTitle() {
         $(".btn-update").click(function () {
-            
+
             $('#updateModal').modal('show');
             var title = $(this).parent().parent().find('.titleUpdate').html();
             var idEmployeeGoal = $(this).parent().find('.idEmployeeGoal').val();
                 $('#updateModalLabel').html(title);
                 $('#idEmployeeGoal').val(idEmployeeGoal);
-            
+
         });
     }
     modalTitle();
@@ -411,7 +443,7 @@
         $('#chartModal').modal('hide');
     }
 
-    $('#type').change(function () { 
+    $('#type').change(function () {
         var type = $(this).val();
         $(".form-goal-type").hide();
         if(type == "zero"){
@@ -420,21 +452,21 @@
             $(".form-percent").show();
         }else if(type == "amount_plus"){
             $(".form-amount-plus").show();
-        }else if(type == "amount_min"){
+        }else if(type == "amount_minus"){
             $(".form-amount-min").show();
         }
     });
 
     $('#weight').on('input', function () {
-        var value = $(this).val();        
-        if ((value !== '') && (value.indexOf('.') === -1)) {            
+        var value = $(this).val();
+        if ((value !== '') && (value.indexOf('.') === -1)) {
             $(this).val(Math.max(Math.min(value, 100), 0));
         }
     });
 
     $('#percent_val').on('input', function () {
-        var value = $(this).val();        
-        if ((value !== '') && (value.indexOf('.') === -1)) {        
+        var value = $(this).val();
+        if ((value !== '') && (value.indexOf('.') === -1)) {
             if(Number(value) < 0){
                 snackbarShow("amount value is to low");
             }else if(Number(value) > 100){
@@ -445,8 +477,8 @@
     });
 
     $('#zero_val').on('input', function () {
-        var value = $(this).val();        
-        if ((value !== '') && (value.indexOf('.') === -1)) {     
+        var value = $(this).val();
+        if ((value !== '') && (value.indexOf('.') === -1)) {
             if(Number(value) < 0){
                 snackbarShow("amount value is to low");
             }else if(Number(value) > Number($("#upper_zero_limit").val())){
@@ -458,24 +490,24 @@
 
     $('#amount_plus_val').on('input', function () {
         var value = $(this).val();
-        if ((value !== '') && (value.indexOf('.') === -1)) {    
+        if ((value !== '') && (value.indexOf('.') === -1)) {
             if(Number(value) < Number($("#lower_plus_limit").val())){
                 snackbarShow("amount value is to low");
             }else if(Number(value) > Number($("#upper_plus_limit").val())){
                 snackbarShow("amount value is to high");
-            }                 
+            }
             $(this).val(Math.max(Math.min(Number(value), Number($("#upper_plus_limit").val())), Number($("#lower_plus_limit").val())));
         }
     });
 
     $('#amount_minus_val').on('input', function () {
-        var value = $(this).val();        
-        if ((value !== '') && (value.indexOf('.') === -1)) {      
+        var value = $(this).val();
+        if ((value !== '') && (value.indexOf('.') === -1)) {
             if(Number(value) < Number($("#lower_minus_limit").val())){
                 snackbarShow("amount value is to low");
             }else if(Number(value) > Number($("#upper_minus_limit").val())){
                 snackbarShow("amount value is to high");
-            }      
+            }
             $(this).val(Math.max(Math.min(Number(value, Number($("#upper_minus_limit").val())), Number($("#lower_minus_limit").val()))));
         }
     });

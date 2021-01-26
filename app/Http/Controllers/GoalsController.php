@@ -12,7 +12,7 @@ class GoalsController extends Controller
 
     public function getTypes()
     {
-        $types = array('zero' => 'Zero','percent' => 'Percent','amount_plus' => 'Amount +','amount_min' => 'Amount -');
+        $types = array('zero' => 'Zero','percent' => 'Percent','amount_plus' => 'Amount +','amount_minus' => 'Amount -');
         return $types;
     }
 
@@ -21,6 +21,7 @@ class GoalsController extends Controller
         $goals = EmployeeGoals::where('employee_id',session('employee_id_login'))->get();
         foreach ($goals as $key => $value) {
             $goal = Goals::where('id', $value->goal_id)->first();
+            $goal->current_percentage = $value->percentage * $goal->weight * (1/100);
             $value->goal = $goal;
         }
         return $goals;
@@ -103,6 +104,7 @@ class GoalsController extends Controller
                 $message = "Add goal failed";
                 $status = false;
             }
+            return redirect()->route('dash.goals');
             return view('goals.index')->with('types',$this->getTypes())->with('goals',$this->getGoals())->with('position',$this->getPositions())->with('status',$status)->with('message',$message);
         }
     }
@@ -129,7 +131,8 @@ class GoalsController extends Controller
                 $message = "Update goal failed";
                 $status = false;
             }
-            return view('goals.index')->with('types',$this->getTypes())->with('goals',$this->getGoals())->with('position',$this->getPositions())->with('status',$status)->with('message',$message);
+            return redirect()->route('dash.goals');
+            // return view('goals.index')->with('types',$this->getTypes())->with('goals',$this->getGoals())->with('position',$this->getPositions())->with('status',$status)->with('message',$message);
         }
     }
 
